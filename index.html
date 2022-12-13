@@ -197,7 +197,10 @@
 		<center><h1>Abstract</h1></center>
 		<tr>
 			<td>
-				We want to do semantic segmentation to segment out different parts (epithelium, lumen, stroma, etc) within 3D images of cancerous prostate biopsies, thus to help pathologists grade the severity of the cancer. We will treat our 3D biomedical images as videos since they are very similar in some ways, we plan to apply some state-of-the-art video semantic segmentation models to our 3D image datasets. The data were taken from the microscopes in our lab which contains nuclei and cytoplasm channels, there are also more than 100 biopsies with ground truth segmentation masks generated previously by traditional thresholding-based CV segmentation methods that we can use for training in a supervised manner. We can evaluate our model performance using both computer-evaluation strategy like SSIM or involve a pathologist to look at the result segmentation masks against the original input channels (nuclei and cytoplasm) if the ground truth is unknown (for inference dataset).
+				Semantic segmentation is useful to segment out different parts in tissues from microscopic biomedical images. However, it is a tough task to do traditional computer vision-based segmentation in 3D since both the continuity and context information need to be considered for all three directions, many parameters need to be taken into account and much manual examination and tweaking make it tedious and time-consuming.
+Deep learning-based semantic segmentation remains as a promising technology to deal with such problem since the models generate well on different datasets with similar properties. Once well trained, no more manual efforts need to be done. There are already a lot of successful deep learning models for specific segmentation tasks of 3D biomedical images.
+nnU-Net is a self-configuring model for various biomedical segmentation tasks. It can configure different network structures, pre/post-processing pipelines, etc based on the dataset properties like imaging modality, image sizes, voxel spacings, class ratios, etc. In this project, we adapt nnU-Net to train a model which is capable of segmenting out epithelium and lumen of synthetic immunolabeled prostate glands in 3D images.
+
 			</td>
 		</tr>
 	</table>
@@ -226,7 +229,9 @@
 		<center><h1>Problem statement</h1></center>
 		<tr>
 			<td>
-				We want to do semantic segmentation to segment out different parts (epithelium, lumen, stroma, etc) within 3D images of cancerous prostate biopsies, thus to help pathologists grade the severity of the cancer. We will treat our 3D biomedical images as videos since they are very similar in some ways, we plan to apply some state-of-the-art video semantic segmentation models to our 3D image datasets. The data were taken from the microscopes in our lab which contains nuclei and cytoplasm channels, there are also more than 100 biopsies with ground truth segmentation masks generated previously by traditional thresholding-based CV segmentation methods that we can use for training in a supervised manner. We can evaluate our model performance using both computer-evaluation strategy like SSIM or involve a pathologist to look at the result segmentation masks against the original input channels (nuclei and cytoplasm) if the ground truth is unknown (for inference dataset).
+				Our lab’s former member, Dr. Weisi Xie, created an image translation-assisted segmentation in 3D (ITAS3D) method to segment out different parts (epithelium, lumen, stroma, etc) within 3D images of cancerous prostate biopsies, thus to help pathologists grade the severity of the cancer. This whole pipeline is great and helpful, but a bit sophisticated. The final step of the pipeline for gland segmentation is based on traditional computer vision methods which requires a lot of manual parameter tweaking, we need to do trial-and-errors multiple times when processing one biopsy, to see the intermediate output and tweak those parameters accordingly for better results, which is tedious and time-consuming. What’s more tedious and time-consuming is that you need to do the manual parameter tweaking for each and every single biopsy as those parameters don’t generate and adapt well for different cases. Thus, we are always thinking about utilizing deep learning to train another model to automatically do the segmentation.
+Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D biomedical segmentation models are trained on CT or MRI images. Transfer learning with those models may require high levels of expertise and experience, with small errors leading to large drops in performance, some successful configurations from one dataset rarely translate to another. To address these issues, we found the latest self-configuring biomedical image segmentation model called nnU-Net, which can adapt itself no matter on preprocessing, network architecture, training and post-processing for any unseen task, thus perfectly suits our needs. So, we will use this method to train a model that can segment out epithelium and lumen within 3D cancerous prostate biopsies, to replace the current traditional CV-based segmentation process.
+
 			</td>
 		</tr>
 	</table>
@@ -237,8 +242,7 @@
 		<center><h1>Datasets</h1></center>
 		<tr>
 			<td>
-				The datasets are from prostate spicimen.
-			</td>
+				The original data were taken by the lightsheet microscopes in our lab which contains nuclei and cytoplasm channels. We used GAN to translate those channels into synthetic immunolabeled images which are easier for segmentation tasks. For memory limit reasons, we use 4x downsampled 3D images (still got ~7000*512*350 in pixel size) for training and inference. There are more than 100 biopsies with ground truth segmentation masks generated previously by traditional thresholding-based CV segmentation methods that we can use for training in a supervised manner. The input are synthetic immunolabeled images and the target are those corresponding ground truth segmentation masks.			</td>
 		</tr>
 	</table>
 	<br>
