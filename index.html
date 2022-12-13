@@ -118,7 +118,7 @@
 
 <html>
 <head>
-	<title>This is my paper title</title>
+	<title>DLAS3D</title>
 	<meta property="og:image" content="Path to my teaser.png"/> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
 	<meta property="og:title" content="deepl3d final" />
 	<meta property="og:description" content="Paper description." />
@@ -138,16 +138,16 @@
 <body>
 	<br>
 	<center>
-		<span style="font-size:36px">DeepL 3D Final project</span>
-		<table align=center width=600px>
-			<table align=center width=600px>
+		<span style="font-size:36px">Deep Learning Final project</span>
+		<table align=center width=250px>
+			<table align=center width=250px>
 				<tr>
 					<td align=center width=100px>
 						<center>
 							<span style="font-size:24px"><a href="https://github.com/CptWang">Rui Wang</a></span>
 						</center>
 					</td>
-					<td align=center width=100px>
+					<td align=center width=120px>
 						<center>
 							<span style="font-size:24px"><a href="http://www.mechhu.com">Bingwen Hu</a></span>
 						</center>
@@ -220,9 +220,81 @@
 			</center>
 		</tr>
 	</table>
-	<hr>
 
-	<center><h1>Code</h1></center>
+	<hr>
+	<table align=center width=850px>
+		<center><h1>Problem statement</h1></center>
+		<tr>
+			<td>
+				We want to do semantic segmentation to segment out different parts (epithelium, lumen, stroma, etc) within 3D images of cancerous prostate biopsies, thus to help pathologists grade the severity of the cancer. We will treat our 3D biomedical images as videos since they are very similar in some ways, we plan to apply some state-of-the-art video semantic segmentation models to our 3D image datasets. The data were taken from the microscopes in our lab which contains nuclei and cytoplasm channels, there are also more than 100 biopsies with ground truth segmentation masks generated previously by traditional thresholding-based CV segmentation methods that we can use for training in a supervised manner. We can evaluate our model performance using both computer-evaluation strategy like SSIM or involve a pathologist to look at the result segmentation masks against the original input channels (nuclei and cytoplasm) if the ground truth is unknown (for inference dataset).
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<hr>
+	<table align=center width=850px>
+		<center><h1>Datasets</h1></center>
+		<tr>
+			<td>
+				The datasets are from prostate spicimen.
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<hr>
+	<table align=center width=850px>
+		<center><h1>Related work</h1></center>
+		<tr>
+			<td>
+				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
+			</td>
+		</tr>
+	</table>
+	<br>
+	<!-- <hr> -->
+
+	<table align=center width=450px>
+		<!-- <center><h1>Supplementary Material</h1></center> -->
+		<tr>
+			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
+			<td><span style="font-size:14pt">Isensee, F., Jaeger, P.F., Kohl, S.A.A. et al.<br>
+				<b>nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation</b><br>
+				Nature Methods, 2021.<br>
+				( <a href="https://www.nature.com/articles/s41592-020-01008-z">PDF</a>)<br>
+				<!-- (<a href="./resources/camera-ready.pdf">camera ready</a>)<br> -->
+				<span style="font-size:4pt"><a href=""><br></a>
+				</span>
+			</td>
+		</tr>
+	</table>
+	<!-- <hr> -->
+	<br>
+<!-- 
+	<table align=center width=600px>
+		<tr>
+			<td><span style="font-size:14pt"><center>
+				<a href="./resources/bibtex.txt">[Bibtex]</a>
+			</center></td>
+		</tr>
+	</table> -->
+
+	<hr>
+	<!-- <br> -->
+
+	<table align=center width=850px>
+		<center><h1>Methodology</h1></center>
+		<tr>
+			<td>
+				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<!-- <center><h1>Code</h1></center> -->
 
 	<table align=center width=420px>
 		<center>
@@ -241,6 +313,42 @@
 			</td>
 		</tr>
 	</table>
+
+	<hr>
+	<table align=center width=850px>
+		<center><h1>Experiments</h1></center>
+		<tr>
+			<td>
+				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<hr>
+	<table align=center width=850px>
+		<center><h1>Results</h1></center>
+		<tr>
+			<td>
+				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<hr>
+	<table align=center width=850px>
+		<center><h1>Conclusion</h1></center>
+		<tr>
+			<td>
+				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
 	<table align=center width=850px>
 		<center>
 			<tr>
@@ -259,31 +367,8 @@
 	</table>
 	<br>
 	<hr>
-	<table align=center width=450px>
-		<center><h1>Supplementary Material</h1></center>
-		<tr>
-			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
-			<td><span style="font-size:14pt">Isensee, F., Jaeger, P.F., Kohl, S.A.A. et al.<br>
-				<b>nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation</b><br>
-				Nature Methods, 2021.<br>
-				( <a href="https://www.nature.com/articles/s41592-020-01008-z">PDF</a>)<br>
-				<!-- (<a href="./resources/camera-ready.pdf">camera ready</a>)<br> -->
-				<span style="font-size:4pt"><a href=""><br></a>
-				</span>
-			</td>
-		</tr>
-	</table>
-	<br>
+	
 
-	<table align=center width=600px>
-		<tr>
-			<td><span style="font-size:14pt"><center>
-				<a href="./resources/bibtex.txt">[Bibtex]</a>
-			</center></td>
-		</tr>
-	</table>
-
-	<hr>
 	<br>
 
 	<table align=center width=900px>
