@@ -227,6 +227,17 @@ nnU-Net is a self-configuring model for various biomedical segmentation tasks. I
 	<hr>
 	<table align=center width=850px>
 		<center><h1>Problem statement</h1></center>
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:500px" src="./resources/problem_statement.jpg"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+
+
 		<tr>
 			<td>
 				Our lab’s former member, Dr. Weisi Xie, created an image translation-assisted segmentation in 3D (ITAS3D) method to segment out different parts (epithelium, lumen, stroma, etc) within 3D images of cancerous prostate biopsies, thus to help pathologists grade the severity of the cancer. This whole pipeline is great and helpful, but a bit sophisticated. The final step of the pipeline for gland segmentation is based on traditional computer vision methods which requires a lot of manual parameter tweaking, we need to do trial-and-errors multiple times when processing one biopsy, to see the intermediate output and tweak those parameters accordingly for better results, which is tedious and time-consuming. What’s more tedious and time-consuming is that you need to do the manual parameter tweaking for each and every single biopsy as those parameters don’t generate and adapt well for different cases. Thus, we are always thinking about utilizing deep learning to train another model to automatically do the segmentation.
@@ -252,12 +263,28 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 		<center><h1>Related work</h1></center>
 		<tr>
 			<td>
-				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
+				Our concepts are inspired by the paper <a href='https://washington-seattle.digication.com/readfile.digi?localfile=M6b5df1b655fd18f245ea99b6b252d403&filename=334.full.pdf'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em> and the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"Prostate CancerRiskStratificationviaNondestructive3D Pathology with Deep Learning–Assisted Gland Analysis"</a> published on the <em>Cancer research </em>
 			</td>
 		</tr>
 	</table>
 	<br>
 	<!-- <hr> -->
+
+	<table align=center width=450px>
+		<!-- <center><h1>Supplementary Material</h1></center> -->
+		<tr>
+			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper2.png"/></a></td>
+			<td><span style="font-size:14pt">Weisi Xie, et al.<br>
+				<b>Prostate CancerRiskStratificationviaNondestructive3D Pathology with Deep Learning–Assisted Gland Analysis</b><br>
+				Cancer research, 2021.<br>
+				( <a href="https://washington-seattle.digication.com/readfile.digi?localfile=M6b5df1b655fd18f245ea99b6b252d403&filename=334.full.pdf">PDF</a>)<br>
+				<span style="font-size:4pt"><a href=""><br></a>
+				</span>
+			</td>
+		</tr>
+	</table>
+	<!-- <hr> -->
+	<br>
 
 	<table align=center width=450px>
 		<!-- <center><h1>Supplementary Material</h1></center> -->
@@ -275,6 +302,8 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 	</table>
 	<!-- <hr> -->
 	<br>
+
+
 <!-- 
 	<table align=center width=600px>
 		<tr>
