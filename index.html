@@ -67,7 +67,7 @@
 		box-shadow:
 		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
 		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		5px 5px 1px 1px rgba(0,0,D0,0.35), /* The second layer shadow */
 		10px 10px 0 0px #fff, /* The third layer */
 		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
 		15px 15px 0 0px #fff, /* The fourth layer */
@@ -198,8 +198,8 @@
 		<tr>
 			<td>
 				Semantic segmentation is useful to segment out different parts in tissues from microscopic biomedical images. However, it is a tough task to do traditional computer vision-based segmentation in 3D since both the continuity and context information need to be considered for all three directions, many parameters need to be taken into account and much manual examination and tweaking make it tedious and time-consuming.
-Deep learning-based semantic segmentation remains as a promising technology to deal with such problem since the models generate well on different datasets with similar properties. Once well trained, no more manual efforts need to be done. There are already a lot of successful deep learning models for specific segmentation tasks of 3D biomedical images.
-nnU-Net is a self-configuring model for various biomedical segmentation tasks. It can configure different network structures, pre/post-processing pipelines, etc based on the dataset properties like imaging modality, image sizes, voxel spacings, class ratios, etc. In this project, we adapt nnU-Net to train a model which is capable of segmenting out epithelium and lumen of synthetic immunolabeled prostate glands in 3D images.
+<br><br>Deep learning-based semantic segmentation remains as a promising technology to deal with such problem since the models generate well on different datasets with similar properties. Once well trained, no more manual efforts need to be done. There are already a lot of successful deep learning models for specific segmentation tasks of 3D biomedical images.
+<br><br>nnU-Net is a self-configuring model for various biomedical segmentation tasks. It can configure different network structures, pre/post-processing pipelines, etc based on the dataset properties like imaging modality, image sizes, voxel spacings, class ratios, etc. In this project, we adapt nnU-Net to train a model which is capable of segmenting out epithelium and lumen of synthetic immunolabeled prostate glands in 3D images.
 
 			</td>
 		</tr>
@@ -232,15 +232,16 @@ nnU-Net is a self-configuring model for various biomedical segmentation tasks. I
 		<tr>
 			<td width=260px>
 				<center>
-					<img class="round" style="width:500px" src="./resources/problem_statement.jpg"/>
+					<img class="round" style="width:850px" src="./resources/problem_statement.jpg"/>
 				</center>
 			</td>
 		</tr>
 
 		<tr>
 			<td>
-				Our lab’s former member, Dr. Weisi Xie, created an image translation-assisted segmentation in 3D (ITAS3D) method to segment out different parts (epithelium, lumen, stroma, etc) within 3D images of cancerous prostate biopsies, thus to help pathologists grade the severity of the cancer. This whole pipeline is great and helpful, but a bit sophisticated. The final step of the pipeline for gland segmentation is based on traditional computer vision methods which requires a lot of manual parameter tweaking, we need to do trial-and-errors multiple times when processing one biopsy, to see the intermediate output and tweak those parameters accordingly for better results, which is tedious and time-consuming. What’s more tedious and time-consuming is that you need to do the manual parameter tweaking for each and every single biopsy as those parameters don’t generate and adapt well for different cases. Thus, we are always thinking about utilizing deep learning to train another model to automatically do the segmentation.
-Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D biomedical segmentation models are trained on CT or MRI images. Transfer learning with those models may require high levels of expertise and experience, with small errors leading to large drops in performance, some successful configurations from one dataset rarely translate to another. To address these issues, we found the latest self-configuring biomedical image segmentation model called nnU-Net, which can adapt itself no matter on preprocessing, network architecture, training and post-processing for any unseen task, thus perfectly suits our needs. So, we will use this method to train a model that can segment out epithelium and lumen within 3D cancerous prostate biopsies, to replace the current traditional CV-based segmentation process.
+				Our lab’s former member, Dr. Weisi Xie, created an image translation-assisted segmentation in 3D (ITAS3D) method to segment out different parts (epithelium, lumen, stroma, etc) within 3D images of cancerous prostate biopsies, thus to help pathologists grade the severity of the cancer. This whole pipeline is great and helpful, but a bit sophisticated. The final step of the pipeline for gland segmentation is based on traditional computer vision methods which requires a lot of manual parameter tweaking, we need to do trial-and-errors multiple times when processing one biopsy, to see the intermediate output and tweak those parameters accordingly for better results, which is tedious and time-consuming. What’s more tedious and time-consuming is that you need to do the manual parameter tweaking for each and every single biopsy as those parameters don’t generate and adapt well for different cases. 
+				Thus, we are always thinking about utilizing deep learning to train another model to automatically do the segmentation.
+				<br><br>Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D biomedical segmentation models are trained on CT or MRI images. Transfer learning with those models may require high levels of expertise and experience, with small errors leading to large drops in performance, some successful configurations from one dataset rarely translate to another. To address these issues, we found the latest self-configuring biomedical image segmentation model called nnU-Net, which can adapt itself no matter on preprocessing, network architecture, training and post-processing for any unseen task, thus perfectly suits our needs. So, we will use this method to train a model that can segment out epithelium and lumen within 3D cancerous prostate biopsies, to replace the current traditional CV-based segmentation process.
 
 			</td>
 		</tr>
@@ -252,7 +253,17 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 		<center><h1>Datasets</h1></center>
 		<tr>
 			<td>
-				The original data were taken by the lightsheet microscopes in our lab which contains nuclei and cytoplasm channels. We used GAN to translate those channels into synthetic immunolabeled images which are easier for segmentation tasks. For memory limit reasons, we use 4x downsampled 3D images (still got ~7000*512*350 in pixel size) for training and inference. There are more than 100 biopsies with ground truth segmentation masks generated previously by traditional thresholding-based CV segmentation methods that we can use for training in a supervised manner. The input are synthetic immunolabeled images and the target are those corresponding ground truth segmentation masks.			</td>
+				The original data were taken by the lightsheet microscopes in our lab which contains nuclei and cytoplasm channels. We used GAN to translate those channels into synthetic immunolabeled images which are easier for segmentation tasks. The synthetic immunolabeled (CK8) image stack (3D tiff stack) is shown below. For memory limit reasons, we use 4x downsampled 3D images (still got ~7000*512*350 in pixel size) for training and inference. There are more than 100 biopsies with ground truth segmentation masks generated previously by traditional thresholding-based CV segmentation methods that we can use for training in a supervised manner. The input are synthetic immunolabeled images and the target are those corresponding ground truth segmentation masks.		</tr>
+	</table>
+	<br>
+	<table align=center width=400px>
+		<tr>
+			<td align=center width=400px>
+				<center>
+					<img class="round" style="width:850px" src="./resources/datasets.gif"/>
+					nn-U Net: backbone network
+				</center>
+			</td>
 		</tr>
 	</table>
 	<br>
@@ -270,7 +281,6 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 	<!-- <hr> -->
 
 	<table align=center width=450px>
-		<!-- <center><h1>Supplementary Material</h1></center> -->
 		<tr>
 			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper2.png"/></a></td>
 			<td><span style="font-size:14pt">Weisi Xie, et al.<br>
@@ -281,12 +291,7 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 				</span>
 			</td>
 		</tr>
-	</table>
-	<!-- <hr> -->
-	<br>
 
-	<table align=center width=450px>
-		<!-- <center><h1>Supplementary Material</h1></center> -->
 		<tr>
 			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
 			<td><span style="font-size:14pt">Isensee, F., Jaeger, P.F., Kohl, S.A.A. et al.<br>
@@ -299,6 +304,8 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 			</td>
 		</tr>
 	</table>
+	<br>
+
 	<!-- <hr> -->
 	<br>
 
@@ -319,32 +326,31 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 		<center><h1>Methodology</h1></center>
 		<tr>
 			<td>
-				We employed the nnU-Net repository and follow the instruction to install the whole framework for our use. Then we prepared the data and restructure them to the correct format and arrangement for training and inference. Our 3D image data are still very big after 4x downsample (~7000*512*350 in pixel size) thus cannot be directly fed into the network due to memory limit and time concern. Hence, we chunked our data into ~512*512*350 blocks from 4 entire biopsies to form the training and inference dataset. This ensured that no out of memory issue would occur during training and inference, as well as guaranteeing a reasonable training time so we could get some results before the project due, but it will impact on the model’s prediction accuracy since some context information would be lost after chunking the image data. The model wouldn’t be able to “see” the entire biopsy as a whole while training and might interpret some lumen field as stroma. Ultimately, we will utilize more computing power from our lab’s workstation that can take in much larger input and train a lot longer time to generate a more well-performed model in the future. The evaluation of the model is integrated in the training process using Dice coefficient as the performance metric. We will also examine the segmentation results generated by the model after inference to visually evaluate how much difference against the ground truth masks.
-			</td>
+				We employed the <a href= 'https://github.com/MIC-DKFZ/nnUNet'>nnU-Net repository </a> and follow the instruction to install the whole framework for our use. The backbone of nnU-Net, is still composed by several U-Net-like network structures. We know that current biomedical image segmentation models are more or less based on U-Net, a classical network structure for these specific tasks. But nnU-Net can configure suitable network structure, training and pre/post-processing itself for various input dataset. We prepared the data and restructure them to the correct format and arrangement for training and inference. Our 3D image data are still very big after 4x downsample (~7000*512*350 in pixel size) thus cannot be directly fed into the network due to memory limit and time concern. Hence, we chunked our data into ~512*512*350 blocks from 4 entire biopsies to form the training and inference dataset. This ensured that no out of memory issue would occur during training and inference, as well as guaranteeing a reasonable training time so we could get some results before the project due, but it will impact on the model’s prediction accuracy since some context information would be lost after chunking the image data. The model wouldn’t be able to “see” the entire biopsy as a whole while training and might interpret some lumen field as stroma. Ultimately, we will utilize more computing power from our lab’s workstation that can take in much larger input and train a lot longer time to generate a more well-performed model in the future. The evaluation of the model is integrated in the training process using Dice coefficient as the performance metric. We will also examine the segmentation results generated by the model after inference to visually evaluate how much difference against the ground truth masks.			</td>
 		</tr>
 	</table>
 	<br>
 
-
-	<!-- <center><h1>Code</h1></center> -->
-
-	
-	<!-- <table align=center width=400px>
+	<table align=center width=400px>
 		<tr>
 			<td align=center width=400px>
 				<center>
-					<td><img class="round" style="width:450px" src="./resources/method_diagram.png"/></td>
+					<img class="round" style="width:850px" src="./resources/nnUNet_backbone_networks.jpg"/>
+					nn-U Net: backbone network
 				</center>
 			</td>
 		</tr>
-	</table> -->
+	</table>
+	<br>
 
 	<hr>
 	<table align=center width=850px>
 		<center><h1>Experiments</h1></center>
 		<tr>
 			<td>
-				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
+				We trained our model with one biopsy of data in total (16 blocks, each with 512*512*356 pixel size). The input data are synthetic immunolabeled (CK8) images and the target (label) data are ground truth segmentation masks with two channels (epithelium and lumen). Training on one NVIDIA Quadro P6000 GPU for 200 epochs took ~48 hours (screenshot below shows training process in terminal). After the model training done, we used it to do inference on both the blocks for training to see its ability to overfit, as well as other 3 biopsies of data that unseen by the model to verify its generalizability. The evaluation of the training progress with training loss, validation loss and Dice coefficient can also be seen from the below image.
+				<br>
+				We can see the loss and evaluation metric fluctuate a lot after ~50 epochs, but it still demonstrates a general trend of decreasing in loss and increasing in performance metric. We expect better performance if trained for more epochs.
 			</td>
 		</tr>
 	</table>
@@ -354,7 +360,8 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 		<tr>
 			<td align=center width=400px>
 				<center>
-					<td><img class="round" style="width:450px" src="./resources/training_progress.jpg"/></td>
+					<img class="round" style="width:850px" src="./resources/training_progress.jpg"/>
+					Training process
 				</center>
 			</td>
 		</tr>
@@ -364,73 +371,82 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 		<tr>
 			<td align=center width=400px>
 				<center>
-					<td><img class="round" style="width:450px" src="./resources/evaluation.png"/></td>
+					<img class="round" style="width:850px" src="./resources/evaluation.png"/>
+					Evaluation
 				</center>
 			</td>
 		</tr>
 	</table>
 
-
+	<br>
+	<br>
 
 
 	<hr>
+
 	<table align=center width=850px>
 		<center><h1>Results</h1></center>
-		<img src="./resources/segmusk_ground1.gif" alt="Segementation musk - Ground truth" style="width:48px;height:48px;">
-
-		<tr>
-			<td width=260px>
-				<center>
-				</center>
-			</td>
-
-			<td width=260px>
-				<center>
-					<img src="./resources/segmusk_model1.gif" alt="Segementation musk - output by the model" style="width:48px;height:48px;">
-				</center>
-			</td>
-		</tr>
-
-	<table>
-
 		<tr>
 			<td>
-				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
+				Two pairs of results are randomly selected from the model’s inference output. The red-and-yellow ones on the left are the ground truth segmentation masks generated by traditional thresholding-based CV methods and were already validated by experienced pathologists. Red represents lumen and yellow represents epithelium. The black-white-gray ones on the right are inference output of the model, where white represents lumen and gray represents epithelium. The ROI 1 image stack (3D image in a tiff stack) is from the training set so we can see how the model overfit. It turned out the model performed very well on the training data and little discrepancy can be seen between the generated result and the ground truth. The ROI 2 image stack is from the inference dataset that previously unseen by the model. It turned out the model can also generalize well on unseen images and segment out lumen and epithelium relatively well. Although some small lumen field were missing or wrongly replaced by epithelium, the result looks good enough given only one biopsy-equivalent of training data with only 200 epochs.			</td>
 			</td>
 		</tr>
-
 	</table>
 	<br>
+
+	<table align=center width=850px>
+		<tr>
+			<td width=260px>
+				<center>
+					<img src="./resources/segmusk_ground1.gif" alt="Segmentation musk - Ground truth" style="width:425px;height:477px;">
+					Segmentation musk ROI1 - Ground truth
+				</center>
+			</td>
+			<td width=260px>
+				<center>
+					<img src="./resources/segmusk_model1.gif" alt="Segmentation musk - output by the model" style="width:425px;height:477px;">
+					Segmentation musk ROI1 - output by the model
+				</center>
+			</td>
+		</tr>
+	</table>
+
+
+
+	<br>
+
+	<table align=center width=850px>
+		<tr>
+			<td width=260px>
+				<center>
+					<img src="./resources/segmusk_ground2.gif" alt="Segmentation musk2 - Ground truth" style="width:425px;height:477px;">
+					Segmentation musk ROI2 - Ground truth
+				</center>
+			</td>
+			<td width=260px>
+				<center>
+					<img src="./resources/segmusk_model2.gif" alt="Segmentation musk - output by the model" style="width:425px;height:477px;">
+					Segmentation musk ROI2 - output by the model
+				</center>
+			</td>
+		</tr>
+	</table>
+
+	<br>
+
 
 	<hr>
 	<table align=center width=850px>
-		<center><h1>Conclusion</h1></center>
+		<center><h1>Conclusion and future work</h1></center>
 		<tr>
 			<td>
-				Our concepts are inspired by the paper <a href='https://www.nature.com/articles/s41592-020-01008-z'>"nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"</a> published on the <em>Nature Method</em>.
-			</td>
+				We adapted a deep learning-based self-configuring model for biomedical image segmentation, called nnU-Net, into our existing pipeline to replace the sophisticated and cumbersome manual thresholding-based CV segmentation method. The results, though considered preliminary, looks good enough and promising. In the near future, we plan to retrain the model using larger 3D image chunks that can fully utilize our computing resources (current training data only occupied ~1/3 of our GPU memory). Larger 3D chunks help retain more context information which is essential for biomedical image segmentation. We also plan to train for more epochs since we have the entire holiday to let the GPU train on larger models. Better performance should be seen after ~1000 epochs of training.
+				<br><br>Generally speaking, our synthetic immunolabeled (CK8) images are considered relatively easy task for state-of-the-art biomedical image segmentation models since they already have the high contrast and obvious features which help segmentation. But generating those synthetic immunolabeled (CK8) images from our original microscopic images still requires another procedure of image translation. The GAN-based image translation model also requires to be trained for various imaging modalities and tri-labeling types. Eventually, we want to train a model that can directly segment out different parts of tissues from the original nuclei and cytoplasm channels taken from the microscopes. In the long term, we will still try to use nnU-Net to realize that as nnU-Net also comes with the capability of taking input data with multiple channels and different imaging modalities. We are curious to see how it would perform to simplify the entire pipeline as directly from the microscope to the final segmentation results. Should be interesting!			</td>
 		</tr>
 	</table>
 	<br>
 
 
-
-	<table align=center width=850px>
-		<center>
-			<tr>
-				<td>
-					Short description if wanted
-				</td>
-			</tr>
-		</center>
-	</table>
-	<table align=center width=800px>
-		<br>
-		<tr><center>
-			<span style="font-size:28px">&nbsp;<a href='https://github.com/hu-bingwen/DLAS3D/'>[GitHub]</a>
-			</center>
-		</span>
-	</table>
 	<br>
 	<hr>
 	
@@ -442,6 +458,7 @@ Our 3D prostate biopsy images are taken by lightsheet microscopes, but major 3D 
 			<td width=400px>
 				<left>
 					<center><h1>Acknowledgements</h1></center>
+					The datasets are taken by the lightsheet microscopes in the <a href="https://washington-seattle.digication.com/jonliu/Peer-reviewed/published">Molecular Biophotonics Laboratory</a>. The original ITAS3D is developed by Dr. Weisi Xie. The nnU-Net repository is created and maintained by <a href ="https://github.com/FabianIsensee">Fabian Isensee</a>.
 					This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> The code can be found <a href="https://github.com/richzhang/webpage-template">here</a>.
 				</left>
 			</td>
